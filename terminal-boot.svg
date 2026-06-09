@@ -1,0 +1,319 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 600" width="850" height="600">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap');
+
+      .terminal-bg { fill: #0a0e17; }
+      .terminal-border { fill: none; stroke: #1a2744; stroke-width: 2; rx: 12; }
+      .title-bar { fill: #111827; }
+      .btn-red { fill: #ef4444; }
+      .btn-yellow { fill: #f59e0b; }
+      .btn-green { fill: #22c55e; }
+      .title-text { fill: #7dd3fc; font-family: 'Share Tech Mono', 'Courier New', monospace; font-size: 13px; }
+      .prompt { fill: #22d3ee; font-family: 'Share Tech Mono', 'Courier New', monospace; font-size: 13.5px; }
+      .text-green { fill: #4ade80; font-family: 'Share Tech Mono', 'Courier New', monospace; font-size: 13.5px; }
+      .text-cyan { fill: #22d3ee; font-family: 'Share Tech Mono', 'Courier New', monospace; font-size: 13.5px; }
+      .text-magenta { fill: #e879f9; font-family: 'Share Tech Mono', 'Courier New', monospace; font-size: 13.5px; }
+      .text-purple { fill: #c084fc; font-family: 'Share Tech Mono', 'Courier New', monospace; font-size: 13.5px; }
+      .text-white { fill: #e2e8f0; font-family: 'Share Tech Mono', 'Courier New', monospace; font-size: 13.5px; }
+      .text-dim { fill: #475569; font-family: 'Share Tech Mono', 'Courier New', monospace; font-size: 13.5px; }
+      .text-orange { fill: #fb923c; font-family: 'Share Tech Mono', 'Courier New', monospace; font-size: 13.5px; }
+      .tag-ok { fill: #4ade80; font-family: 'Share Tech Mono', 'Courier New', monospace; font-size: 12px; font-weight: bold; }
+      .tag-loaded { fill: #22d3ee; font-family: 'Share Tech Mono', 'Courier New', monospace; font-size: 12px; font-weight: bold; }
+      .tag-ready { fill: #e879f9; font-family: 'Share Tech Mono', 'Courier New', monospace; font-size: 12px; font-weight: bold; }
+
+      /* Scanline effect */
+      .scanline {
+        fill: url(#scanlineGrad);
+        opacity: 0.04;
+        animation: scanmove 4s linear infinite;
+      }
+      @keyframes scanmove {
+        0% { transform: translateY(-600px); }
+        100% { transform: translateY(600px); }
+      }
+
+      /* Screen glow */
+      .screen-glow {
+        fill: none;
+        stroke: #22d3ee;
+        stroke-width: 1;
+        opacity: 0.15;
+        filter: blur(8px);
+      }
+
+      /* Cursor blink */
+      .cursor {
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      /* Line appear animations - staggered */
+      .line { opacity: 0; }
+      .line-1  { animation: fadeIn 0.3s 0.3s forwards; }
+      .line-2  { animation: fadeIn 0.3s 0.8s forwards; }
+      .line-3  { animation: fadeIn 0.3s 1.3s forwards; }
+      .line-4  { animation: fadeIn 0.3s 1.8s forwards; }
+      .line-5  { animation: fadeIn 0.3s 2.5s forwards; }
+      .line-6  { animation: fadeIn 0.3s 3.0s forwards; }
+      .line-7  { animation: fadeIn 0.3s 3.5s forwards; }
+      .line-8  { animation: fadeIn 0.3s 4.0s forwards; }
+      .line-9  { animation: fadeIn 0.3s 4.5s forwards; }
+      .line-10 { animation: fadeIn 0.3s 5.0s forwards; }
+      .line-11 { animation: fadeIn 0.3s 5.5s forwards; }
+      .line-12 { animation: fadeIn 0.3s 6.2s forwards; }
+      .line-13 { animation: fadeIn 0.3s 6.7s forwards; }
+      .line-14 { animation: fadeIn 0.3s 7.2s forwards; }
+      .line-15 { animation: fadeIn 0.3s 7.7s forwards; }
+      .line-16 { animation: fadeIn 0.3s 8.2s forwards; }
+      .line-17 { animation: fadeIn 0.3s 9.0s forwards; }
+      .line-18 { animation: fadeIn 0.3s 9.5s forwards; }
+
+      @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      /* Loading bar animations */
+      .load-bar-fill-1 { 
+        width: 0;
+        animation: loadFill 1.2s 2.0s forwards;
+      }
+      .load-bar-fill-2 { 
+        width: 0;
+        animation: loadFill 1.0s 4.2s forwards;
+      }
+      .load-bar-fill-3 {
+        width: 0;
+        animation: loadFill 0.8s 6.9s forwards;
+      }
+      @keyframes loadFill {
+        0% { width: 0; }
+        100% { width: 180px; }
+      }
+      .ascii-type > text { opacity: 0; }
+      .ascii-type > text:nth-child(1) { animation: fadeIn 0s 0.1s forwards; }
+      .ascii-type > text:nth-child(2) { animation: fadeIn 0s 0.2s forwards; }
+      .ascii-type > text:nth-child(3) { animation: fadeIn 0s 0.3s forwards; }
+      .ascii-type > text:nth-child(4) { animation: fadeIn 0s 0.4s forwards; }
+      .ascii-type > text:nth-child(5) { animation: fadeIn 0s 0.5s forwards; }
+      .ascii-type > text:nth-child(6) { animation: fadeIn 0s 0.6s forwards; }
+      .ascii-type > text:nth-child(7) { animation: fadeIn 0s 0.7s forwards; }
+      .ascii-type > text:nth-child(8) { animation: fadeIn 0s 0.8s forwards; }
+
+      /* Final cursor position */
+      .final-cursor {
+        opacity: 0;
+        animation: blink 1s step-end 10s infinite;
+      }
+    </style>
+
+    <!-- Scanline gradient -->
+    <linearGradient id="scanlineGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="45%" stop-color="#22d3ee"/>
+      <stop offset="55%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+
+    <!-- Subtle vignette -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.4"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect class="terminal-bg" width="850" height="600" rx="12"/>
+  <rect class="terminal-border" x="1" y="1" width="848" height="598" rx="12"/>
+
+  <!-- Title bar -->
+  <rect class="title-bar" x="1" y="1" width="848" height="36" rx="12"/>
+  <rect class="title-bar" x="1" y="25" width="848" height="12"/>
+  <line x1="1" y1="37" x2="849" y2="37" stroke="#1a2744" stroke-width="1"/>
+
+  <!-- Window buttons -->
+  <circle class="btn-red" cx="22" cy="19" r="6"/>
+  <circle class="btn-yellow" cx="42" cy="19" r="6"/>
+  <circle class="btn-green" cx="62" cy="19" r="6"/>
+  <text class="title-text" x="370" y="24">deep@cyberspace ~ $</text>
+
+  <!-- Screen glow border -->
+  <rect class="screen-glow" x="5" y="40" width="840" height="555" rx="8"/>
+
+  <!-- ===== TERMINAL CONTENT ===== -->
+  <g transform="translate(24, 60)">
+
+    <!-- Line 1: Boot splash -->
+    <g class="ascii-type">
+      <text class="text-cyan" y="0" xml:space="preserve">╔═══════════════════════════════════════════════════════╗</text>
+      <text class="text-cyan" y="18" xml:space="preserve">║ <tspan class="text-magenta">██████╗ ███████╗███████╗██████      █████   ██████╗  </tspan> ║</text>
+      <text class="text-cyan" y="36" xml:space="preserve">║ <tspan class="text-magenta">██╔══██╗██╔════╝██╔════╝██╔══██╗   ██╔══██╗██╔════╝  </tspan> ║</text>
+      <text class="text-cyan" y="54" xml:space="preserve">║ <tspan class="text-magenta">██║  ██║█████╗  █████╗  ██████╔╝   ██║  ██║███████╗  </tspan> ║</text>
+      <text class="text-cyan" y="72" xml:space="preserve">║ <tspan class="text-magenta">██║  ██║██╔══╝  ██╔══╝  ██╔═══╝    ██║  ██║██╔═══██╗ </tspan> ║</text>
+      <text class="text-cyan" y="90" xml:space="preserve">║ <tspan class="text-magenta">██████╔╝███████╗███████╗██║         █████╔╝╚██████╔╝ </tspan> ║</text>
+      <text class="text-cyan" y="108" xml:space="preserve">║ <tspan class="text-magenta">╚═════╝ ╚══════╝╚══════╝╚═╝         ╚════╝  ╚═════╝  </tspan> ║</text>
+      <text class="text-cyan" y="126" xml:space="preserve">╚═══════════════════════════════════════════════════════╝</text>
+    </g>
+
+    <!-- Line 2: System init -->
+    <g class="line line-2">
+      <text class="text-dim" y="154">[system]</text>
+      <text class="text-green" x="72" y="154"> Initializing DeepBuha06.exe v2.0...</text>
+      <text class="tag-ok" x="380" y="154">[OK]</text>
+    </g>
+
+    <!-- Line 3: Identity -->
+    <g class="line line-3">
+      <text class="text-dim" y="174">[ident]</text>
+      <text class="text-white" x="64" y="174"> Name: </text>
+      <text class="text-cyan" x="120" y="174">Buha Deep Maheshbhai</text>
+      <text class="text-dim" x="330" y="174"> | </text>
+      <text class="text-white" x="345" y="174">IIT Gandhinagar</text>
+    </g>
+
+    <!-- Line 4: Loading skills bar -->
+    <g class="line line-4">
+      <text class="text-dim" y="198">[load]</text>
+      <text class="text-white" x="56" y="198"> Loading skill modules...</text>
+      <rect x="260" y="188" width="184" height="14" rx="3" fill="none" stroke="#1e3a5f" stroke-width="1"/>
+      <rect class="load-bar-fill-1" x="262" y="190" height="10" rx="2" fill="#22d3ee"/>
+      <text class="tag-loaded" x="452" y="199">[LOADED]</text>
+    </g>
+
+    <!-- Line 5-8: Skills output -->
+    <g class="line line-5">
+      <text class="text-dim" y="222">  ├──</text>
+      <text class="text-purple" x="50" y="222"> Languages </text>
+      <text class="text-dim" x="145" y="222">→</text>
+      <text class="text-green" x="162" y="222">Python</text>
+      <text class="text-dim" x="220" y="222">│</text>
+      <text class="text-green" x="232" y="222">C++</text>
+      <text class="text-dim" x="268" y="222">│</text>
+      <text class="text-green" x="280" y="222">Java</text>
+      <text class="text-dim" x="325" y="222">│</text>
+      <text class="text-green" x="337" y="222">JavaScript</text>
+      <text class="text-dim" x="430" y="222">│</text>
+      <text class="text-green" x="442" y="222">Bash</text>
+    </g>
+
+    <g class="line line-6">
+      <text class="text-dim" y="242">  ├──</text>
+      <text class="text-purple" x="50" y="242"> Frameworks</text>
+      <text class="text-dim" x="152" y="242">→</text>
+      <text class="text-magenta" x="162" y="242">PyTorch</text>
+      <text class="text-dim" x="230" y="242">│</text>
+      <text class="text-magenta" x="242" y="242">TensorFlow</text>
+      <text class="text-dim" x="335" y="242">│</text>
+      <text class="text-magenta" x="347" y="242">Streamlit</text>
+    </g>
+
+    <g class="line line-7">
+      <text class="text-dim" y="262">  ├──</text>
+      <text class="text-purple" x="50" y="262"> Domains   </text>
+      <text class="text-dim" x="152" y="262">→</text>
+      <text class="text-orange" x="162" y="262">NLP</text>
+      <text class="text-dim" x="200" y="262">│</text>
+      <text class="text-orange" x="212" y="262">Transformers</text>
+      <text class="text-dim" x="325" y="262">│</text>
+      <text class="text-orange" x="337" y="262">LLMs</text>
+    </g>
+
+    <g class="line line-8">
+      <text class="text-dim" y="282">  └──</text>
+      <text class="text-purple" x="50" y="282"> Tools     </text>
+      <text class="text-dim" x="152" y="282">→</text>
+      <text class="text-cyan" x="162" y="282">Git</text>
+      <text class="text-dim" x="200" y="282">│</text>
+      <text class="text-cyan" x="212" y="282">Docker</text>
+      <text class="text-dim" x="275" y="282">│</text>
+      <text class="text-cyan" x="287" y="282">Linux</text>
+      <text class="text-dim" x="340" y="282">│</text>
+      <text class="text-cyan" x="352" y="282">Performance Profiling</text>
+    </g>
+
+    <!-- Line 9: Loading projects bar -->
+    <g class="line line-9">
+      <text class="text-dim" y="310">[load]</text>
+      <text class="text-white" x="56" y="310"> Mounting project repos...</text>
+      <rect x="268" y="300" width="184" height="14" rx="3" fill="none" stroke="#1e3a5f" stroke-width="1"/>
+      <rect class="load-bar-fill-2" x="270" y="302" height="10" rx="2" fill="#e879f9"/>
+      <text class="tag-loaded" x="460" y="311">[LOADED]</text>
+    </g>
+
+    <!-- Line 10-14: Projects (original repos) -->
+    <g class="line line-10">
+      <text class="text-dim" y="334">  ├──</text>
+      <text class="text-cyan" x="50" y="334">on-heap-off-heap-benchmark</text>
+      <text class="text-dim" x="265" y="334">│</text>
+      <text class="text-white" x="278" y="334">Java memory benchmark</text>
+    </g>
+
+    <g class="line line-11">
+      <text class="text-dim" y="354">  ├──</text>
+      <text class="text-cyan" x="50" y="354">CS-299</text>
+      <text class="text-dim" x="105" y="354">│</text>
+      <text class="text-white" x="118" y="354">Attention is Not Explanation</text>
+    </g>
+
+    <g class="line line-12">
+      <text class="text-dim" y="374">  └──</text>
+      <text class="text-cyan" x="50" y="374">cpu-cache-mechanics</text>
+      <text class="text-dim" x="205" y="374">│</text>
+      <text class="text-white" x="218" y="374">Low-level C++ architectures &amp; edge cases</text>
+    </g>
+
+    <!-- Line 13-14: Portfolio -->
+    <g class="line line-13">
+      <text class="text-dim" y="398">[link]</text>
+      <text class="text-white" x="56" y="398"> Deploying portfolio interface...</text>
+      <text class="tag-ready" x="330" y="399">[ONLINE]</text>
+    </g>
+
+    <g class="line line-14">
+      <text class="text-dim" y="418">  →</text>
+      <text class="text-cyan" x="40" y="418">DeepBuha06.github.io</text>
+      <text class="text-dim" x="215" y="418">│</text>
+      <text class="text-white" x="228" y="418">https://deepbuha06.github.io</text>
+    </g>
+
+    <!-- Line 15: Status loading -->
+    <g class="line line-15">
+      <text class="text-dim" y="442">[stat]</text>
+      <text class="text-white" x="56" y="442"> Computing GitHub metrics...</text>
+      <rect x="290" y="432" width="184" height="14" rx="3" fill="none" stroke="#1e3a5f" stroke-width="1"/>
+      <rect class="load-bar-fill-3" x="292" y="434" height="10" rx="2" fill="#4ade80"/>
+      <text class="tag-ready" x="482" y="443">[READY]</text>
+    </g>
+
+    <!-- Line 16: Stats -->
+    <g class="line line-16">
+      <text class="text-dim" y="466">  →</text>
+      <text class="text-green" x="30" y="466"> 28 repos</text>
+      <text class="text-dim" x="120" y="466">│</text>
+      <text class="text-magenta" x="132" y="466"> Open Source Contributor</text>
+    </g>
+
+    <!-- Line 17: Final ready -->
+    <g class="line line-17">
+      <text class="text-dim" y="492">[done]</text>
+      <text class="text-green" x="56" y="492"> All systems nominal. Welcome to the matrix, Deep.</text>
+      <text class="tag-ok" x="530" y="492">[ONLINE]</text>
+    </g>
+
+    <!-- Line 18: Prompt with blinking cursor -->
+    <g class="line line-18">
+      <text class="prompt" y="516">deep@cyberspace:~$</text>
+      <rect class="final-cursor" x="170" y="504" width="10" height="14" fill="#22d3ee"/>
+    </g>
+  </g>
+
+  <!-- Scanline overlay -->
+  <rect class="scanline" width="850" height="600" rx="12"/>
+
+  <!-- Vignette -->
+  <rect width="850" height="600" rx="12" fill="url(#vignette)"/>
+</svg>
